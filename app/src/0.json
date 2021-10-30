@@ -1,0 +1,8 @@
+{
+	"name": "Gold",
+	"description": "Obsolete store of value",
+	"image": "https://dapps.s3.amazonaws.com/lockchain/gold.png",
+	"properties": {
+		"simple_property": "shiny"
+	}
+}

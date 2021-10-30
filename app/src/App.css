@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+  margin: 2rem;
+}
+
+.section {
+  text-align: left;
+  max-width: 720px;
+  margin: 4rem auto auto;
+}
+
+.description {
+  color: black;
+  animation: fadeIn ease 2s;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+  0% {transform: scale(0.95);}
+  100% {transform: scale(1.0);}
+}
