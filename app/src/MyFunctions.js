@@ -1,9 +1,6 @@
 import React from "react";
-import { newContextComponents } from "@drizzle/react-components";
-import logo from "./logo.png";
 import './App.css';
 
-const { AccountData, ContractData, ContractForm } = newContextComponents;
 
 function pad(number, length) {
 
@@ -24,22 +21,7 @@ async function downloadObject(url) {
   }
 }
 
-function tokenJSON(props) {
-  const uri = ContractData(
-    props.drizzle,
-    props.drizzleState,
-    props.contract,
-    "uri",
-    props.drizzleState.accounts[0],
-  )
-  return (
-    <p>{uri}</p>
-  )
-}
-
 export default ({ drizzle, drizzleState }) => {
-  let uri = "https://dapps.s3.amazonaws.com/lockchain/{id}.json";
-
   // destructure drizzle and drizzleState from props
   return (
     <div className="App">
@@ -61,11 +43,6 @@ export default ({ drizzle, drizzleState }) => {
           units="ether"
           precision={3}
         />
-        <tokenJSON
-          drizzle={drizzle}
-          drizzleState={drizzleState}
-          contract="GameItems"
-        />
       </div>
 
       <div className="section">
@@ -85,6 +62,14 @@ export default ({ drizzle, drizzleState }) => {
             method="balanceOf"
             methodArgs={[drizzleState.accounts[0], 0]}
           />
+          <p>{drizzleState.accounts[0]}</p>
+          <ContractData
+            drizzle={drizzle}
+            drizzleState={drizzleState}
+            contract="GameItems"
+            method="uri"
+            methodArgs="0"
+          />{" "}
           <strong>Tutorial Supply: </strong>
           <ContractData
             drizzle={drizzle}
@@ -101,6 +86,7 @@ export default ({ drizzle, drizzleState }) => {
             hideIndicator
           />
         </p>
+        <p>{pad(4, 64)}</p>
         <p>
           <strong>My Balance: </strong>
           <ContractData
@@ -119,6 +105,56 @@ export default ({ drizzle, drizzleState }) => {
           labels={["To Address", "Amount to Send"]}
         />
       </div>
+
+      <div className="section">
+        <h2>ComplexStorage</h2>
+        <p>
+          Finally this contract shows data types with additional considerations.
+          Note in the code the strings below are converted from bytes to UTF-8
+          strings and the device data struct is iterated as a list.
+        </p>
+        <p>
+          <strong>String 1: </strong>
+          <ContractData
+            drizzle={drizzle}
+            drizzleState={drizzleState}
+            contract="ComplexStorage"
+            method="string1"
+            toUtf8
+          />
+        </p>
+        <p>
+          <strong>String 2: </strong>
+          <ContractData
+            drizzle={drizzle}
+            drizzleState={drizzleState}
+            contract="ComplexStorage"
+            method="string2"
+            toUtf8
+          />
+        </p>
+        <strong>Single Device Data: </strong>
+        <ContractData
+          drizzle={drizzle}
+          drizzleState={drizzleState}
+          contract="ComplexStorage"
+          method="singleDD"
+        />
+      </div>
     </div>
   );
 };
+
+/*
+000000
+000000
+000000
+000000
+000000
+000000
+000000
+000000
+000000
+000000
+0002
+*/
