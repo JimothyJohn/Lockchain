@@ -12,7 +12,7 @@ contract GameItems is ERC20 {
 }
 */
 
-import "/Users/nick/github/openzeppelin-contracts/contracts/token/ERC1155/ERC1155.sol";
+import "../openzeppelin-contracts/contracts/token/ERC1155/ERC1155.sol";
 
 contract GameItems is ERC1155 {
     uint256 public constant GOLD = 0;
