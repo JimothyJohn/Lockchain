@@ -2,43 +2,11 @@ import React from "react";
 import { newContextComponents } from "@drizzle/react-components";
 import logo from "./logo.png";
 import './App.css';
+import CacheCallExample from './CacheCall'
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
 
-function pad(number, length) {
-
-  var str = number.toString(16);
-  while (str.length < length) {
-      str = '0' + str;
-  }
-
-  return str;
-}
-
-async function downloadObject(url) {
-  try {
-    const fetchResponse = await fetch(url);
-    return await fetchResponse.json();
-  } catch (err) {
-    console.error('Error - ', err);
-  }
-}
-
-function tokenJSON(props) {
-  const uri = ContractData(
-    props.drizzle,
-    props.drizzleState,
-    props.contract,
-    "uri",
-    props.drizzleState.accounts[0],
-  )
-  return (
-    <p>{uri}</p>
-  )
-}
-
 export default ({ drizzle, drizzleState }) => {
-  let uri = "https://dapps.s3.amazonaws.com/lockchain/{id}.json";
 
   // destructure drizzle and drizzleState from props
   return (
@@ -50,6 +18,10 @@ export default ({ drizzle, drizzleState }) => {
         <p>
           Examples of how to get started with Drizzle in various situations.
         </p>
+        <CacheCallExample
+          drizzle={drizzle}
+          drizzleState={drizzleState}
+        />
       </div>
 
       <div className="section">
@@ -60,11 +32,6 @@ export default ({ drizzle, drizzleState }) => {
           accountIndex={0}
           units="ether"
           precision={3}
-        />
-        <tokenJSON
-          drizzle={drizzle}
-          drizzleState={drizzleState}
-          contract="GameItems"
         />
       </div>
 

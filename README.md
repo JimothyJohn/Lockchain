@@ -16,7 +16,9 @@ user@host:~$ npm install -g -y truffle # Install truffle as a global tool
 
 ```bash
 user@host:~$ git clone https://github.com/JimothyJohn/Lockchain.git # clone project repo assuming you already haven't 
-user@host:~$ cd Lockchain/app # Move to React app
+user@host:~$ cd Lockchain # Move to repo
+user@host:~/Lockchain$ git submodule init # Initialize OpenZeppelin 
+user@host:~$ cd app # Move to React app
 user@host:~/Lockchain/app$ npm install # Install node libraries
 ```
 
